@@ -337,7 +337,12 @@ do_install() {
 	# Run setup for each distro accordingly
 	case "$lsb_dist" in
 		ubuntu|debian|raspbian)
-			pre_reqs="apt-transport-https ca-certificates curl libvirt-daemon-system libvirt-clients qemu-kvm htop atop"
+			pre_reqs="apt-transport-https ca-certificates curl"
+			if [ "$dist_version" = "bionic" ]; then
+				pre_reqs="libvirt-bin qemu-kvm htop atop"
+			else
+				pre_reqs="libvirt-daemon-system libvirt-clients qemu-kvm htop atop"
+			fi
 			if [ "$lsb_dist" = "debian" ]; then
 				# libseccomp2 does not exist for debian jessie main repos for aarch64
 				if [ "$(uname -m)" = "aarch64" ] && [ "$dist_version" = "jessie" ]; then
