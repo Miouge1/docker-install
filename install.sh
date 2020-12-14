@@ -20,6 +20,7 @@ set -e
 # Git commit from https://github.com/docker/docker-install when
 # the script was uploaded (Should only be modified by upload job):
 SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
+VERSION="19.03" # Pin to v19.03 until v20.10 is supported. See https://github.com/docker/machine/issues/4858
 
 
 # The channel to install from:
